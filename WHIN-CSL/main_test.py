@@ -2,6 +2,7 @@ import unittest
 
 from main import Main
 
+
 class main_test(unittest.TestCase):
 
     def setUp(self):
@@ -29,8 +30,8 @@ class main_test(unittest.TestCase):
         m = Main()
         m.build_graph(doc_rec_tok_k=10,
                       semantic_linking=True,
-                      weighted = True,
-                      authored = True)
+                      weighted=True,
+                      authored=True)
 
     def test_n2v(self):
         m = Main()

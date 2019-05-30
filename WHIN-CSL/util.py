@@ -1,9 +1,11 @@
-import math,sys,os,nltk,json,time,re
+import math, sys, os, nltk, json, time, re
 import numpy as np
 
-def chunks_by_average(tasks:list,m:int):
+
+def chunks_by_average(tasks: list, m: int):
     n = int(math.ceil(len(tasks) / float(m)))
-    return [tasks[i:i+n] for i in range(0,len(tasks),n)]
+    return [tasks[i:i + n] for i in range(0, len(tasks), n)]
+
 
 def cur_file_dir():
     path = sys.path[0]
@@ -12,9 +14,10 @@ def cur_file_dir():
     elif os.path.isfile(path):
         return os.path.dirname(path)
 
-def clear_text(line,clear_stop = True):
+
+def clear_text(line, clear_stop=True):
     ret_list = False
-    if isinstance(line,list):
+    if isinstance(line, list):
         line = " ".join(line)
         ret_list = True
     line = line.lower()
@@ -38,7 +41,7 @@ def clear_text(line,clear_stop = True):
 
     porter2 = nltk.stem.WordNetLemmatizer()
     line = [porter2.lemmatize(x) for x in nltk.word_tokenize(line)]
-    line = [i for i in line if len(i)>1]
+    line = [i for i in line if len(i) > 1]
     if not ret_list:
         return " ".join(line)
     return line
@@ -46,7 +49,7 @@ def clear_text(line,clear_stop = True):
 
 class similarity:
 
-    def cos(self,v_0, v_1):
+    def cos(self, v_0, v_1):
         v1 = np.array(v_0)
         v2 = np.array(v_1)
         d = np.matmul(v1, v2)
@@ -54,22 +57,22 @@ class similarity:
         nb = np.sum(np.square(v2))
         return d / ((na * nb) ** 0.5)
 
-    def Manhattan(self,vec1, vec2):
+    def Manhattan(self, vec1, vec2):
         npvec1, npvec2 = np.array(vec1), np.array(vec2)
         return np.abs(npvec1 - npvec2).sum()
 
-    def Chebyshev(self,vec1, vec2):
+    def Chebyshev(self, vec1, vec2):
         npvec1, npvec2 = np.array(vec1), np.array(vec2)
         return max(np.abs(npvec1 - npvec2))
 
-    def Mahalanobis(self,vec1, vec2):
+    def Mahalanobis(self, vec1, vec2):
         npvec1, npvec2 = np.array(vec1), np.array(vec2)
         npvec = np.array([npvec1, npvec2])
         sub = npvec.T[0] - npvec.T[1]
         inv_sub = np.linalg.inv(np.cov(npvec1, npvec2))
         return math.sqrt(np.dot(inv_sub, sub).dot(sub.T))
 
-    def Pearson(self,p, q):
+    def Pearson(self, p, q):
         same = 0
         for i in p:
             if i in q:
@@ -85,4 +88,3 @@ class similarity:
         if down == 0: return 0
         r = up / down
         return r
-

@@ -1,15 +1,15 @@
-from common import Load,DatasetPaths
+from common import Load, DatasetPaths
+
 
 class Build_graph():
 
-    def __init__(self,experiment_data:str):
+    def __init__(self, experiment_data: str):
         self.experiment_data = experiment_data
         self.l = Load(self.experiment_data)
         self.dp = DatasetPaths(self.experiment_data)
         self.author_init_num = 20000
 
-
-    def build_graph(self,doc_rec_tok_k=10,semantic_linking=True,weighted = True,authored = True):
+    def build_graph(self, doc_rec_tok_k=10, semantic_linking=True, weighted=True, authored=True):
         graph = self.l.load_recommend_result_top_k("doc2vec", doc_rec_tok_k)
 
         f_out = open(self.dp.GRAPH, "w")
@@ -60,7 +60,7 @@ class Build_graph():
                     else:
                         f_out.write(" ".join(map(str, [a_a[0], a_a[1]])) + "\n")
 
-        print("finish build graph on [%s]"%self.experiment_data)
+        print("finish build graph on [%s]" % self.experiment_data)
 
     def __get_a_a(self, v: list) -> list:
         v = v
