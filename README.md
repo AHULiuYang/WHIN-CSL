@@ -8,8 +8,10 @@ Requirements: This package is developed with Python 3.5, please make sure all th
 -ATTN: This package is free for academic usage. You can run it at your own risk. 
 For other purposes, please contact Prof. Shu Zhao(zhaoshuzs2002@hotmail.com)
 -ATTN2: This package was developed by Mr.Yang Liu(liuy_anhui@163.com). 
-The readme file and demo roughly explains how to use the codes. For any problem concerning the codes, please feel free to contact Mr.Liu.
--ATTN3: This package was provided by Lab of Intelligent computing and knowledge engineering, School of computer science and technology, Anhui University
+The readme file and demo roughly explains how to use the codes. 
+For any problem concerning the codes, please feel free to contact Mr.Liu.
+-ATTN3: This package was provided by Lab of Intelligent computing and knowledge engineering, 
+School of computer science and technology, Anhui University
 ```
 
 ## Requirements
