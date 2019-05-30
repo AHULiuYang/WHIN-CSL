@@ -1,6 +1,6 @@
 # WHIN-CSL
 
-Source code for ICME-2019 paper "Citation Recommendation Based on Weighted Heterogeneous Information Network Containing Semantic Linking"
+Source code for ICME-2019 paper "Citation Recommendation Based on Weighted Heterogeneous Information Network Containing Semantic Linking" [paper](http://www.pdf-express.org/Conf/44524XP/versions/981188/PID5863305.pdf)
 
 ## Requirements
 
