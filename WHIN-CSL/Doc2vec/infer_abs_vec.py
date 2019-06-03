@@ -7,6 +7,7 @@ import json
 class Infer_abstract_vec:
 
     def __init__(self, **kwargs):
+
         self.dp = DatasetPaths(kwargs["experiment_data"])
         self.l = Load(kwargs["experiment_data"])
         self.paperid_abstract2vec_dict = {}
@@ -15,6 +16,7 @@ class Infer_abstract_vec:
         self.__save()
 
     def __abstract2vec(self, **kwargs):
+
         print("start infer abstract vector...")
         kwargs.pop("experiment_data")
         i = 0
@@ -27,6 +29,7 @@ class Infer_abstract_vec:
                 print("finish [%d]/[%d]" % (i, self.l.papers_all_num))
 
     def __save(self):
+
         print("save abstract vector to ", self.dp.ABSTRACT_VEC)
         with codecs.open(self.dp.ABSTRACT_VEC, "w", "utf8") as f_o:
             json.dump(self.paperid_abstract2vec_dict, f_o,

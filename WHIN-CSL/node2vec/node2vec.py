@@ -11,6 +11,7 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 
 class Graph():
     def __init__(self, nx_G, is_directed, p, q):
+
         self.G = nx_G
         self.is_directed = is_directed
         self.p = p
@@ -103,6 +104,7 @@ class Graph():
 
 
 def alias_setup(probs):
+
     K = len(probs)
     q = np.zeros(K)
     J = np.zeros(K, dtype=np.int)
@@ -131,6 +133,7 @@ def alias_setup(probs):
 
 
 def alias_draw(J, q):
+
     K = len(J)
 
     kk = int(np.floor(np.random.rand() * K))
@@ -141,6 +144,7 @@ def alias_draw(J, q):
 
 
 def start(**args):
+
     print("start node2vec on [%s] dataset" % args["experiment_data"])
     if args["weighted"]:
         G = nx.read_edgelist(args["input"], nodetype=int, data=(('weight', float),), create_using=nx.DiGraph())

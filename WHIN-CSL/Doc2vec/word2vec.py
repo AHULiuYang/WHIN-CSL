@@ -8,6 +8,7 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 class word2vec:
 
     def __init__(self, **kwargs):
+
         self.dp = DatasetPaths(kwargs["experiment_data"])
         self.l = Load(kwargs["experiment_data"])
         print("start train word2vec")

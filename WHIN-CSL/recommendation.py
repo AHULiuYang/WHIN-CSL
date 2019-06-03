@@ -53,12 +53,12 @@ class Recommend:
                 if model == "doc2vec":
                     sims[cp_id] = sim_pp
                 elif model == "node2vec":
-                    # sim_pa = self.__sim_paper_author(tp_id,self.l.authors(cp_id))
+                    # sim_pa = self._sim_paper_author(tp_id,self.l.authors(cp_id))
                     sims[cp_id] = sim_pp
-            recommend_result[tp_id]["recommend"] = self.__get_top_200(sims)
-        self.__save(recommend_result, model)
+            recommend_result[tp_id]["recommend"] = self._get_top_200(sims)
+        self._save(recommend_result, model)
 
-    def __sim_paper_author(self, tp_id: str, authors: list):
+    def _sim_paper_author(self, tp_id: str, authors: list):
         sim_pas = []
         for a in authors:
             a = int(a) + self.author_init_num
@@ -66,10 +66,10 @@ class Recommend:
             sim_pas.append(sim_pa)
         return max(sim_pas)
 
-    def __save(self, recommend_result: dict, model: str):
+    def _save(self, recommend_result: dict, model: str):
         with open(eval("self.dp." + model.upper() + "_RECOMMEND_RESULT"), "w", encoding="utf8") as f:
             json.dump(recommend_result, f, indent=2, ensure_ascii=False)
 
-    def __get_top_200(self, paper_simil_dict: dict) -> list:
+    def _get_top_200(self, paper_simil_dict: dict) -> list:
         top_all = sorted(paper_simil_dict.items(), key=lambda x: x[1], reverse=True)[:201]
         return [" ".join(map(str, x)) for x in top_all]

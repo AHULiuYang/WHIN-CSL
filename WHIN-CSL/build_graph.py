@@ -4,12 +4,14 @@ from common import Load, DatasetPaths
 class Build_graph():
 
     def __init__(self, experiment_data: str):
+
         self.experiment_data = experiment_data
         self.l = Load(self.experiment_data)
         self.dp = DatasetPaths(self.experiment_data)
         self.author_init_num = 20000
 
     def build_graph(self, doc_rec_tok_k=10, semantic_linking=True, weighted=True, authored=True):
+
         graph = self.l.load_recommend_result_top_k("doc2vec", doc_rec_tok_k)
 
         f_out = open(self.dp.GRAPH, "w")
@@ -26,6 +28,7 @@ class Build_graph():
                     else:
                         f_out.write(" ".join(map(str, [k, p])) + "\n")
                     max = max - 1.0 / doc_rec_tok_k
+
             else:
                 paper_venue = self.l.venue(k)
                 if weighted:
@@ -63,6 +66,7 @@ class Build_graph():
         print("finish build graph on [%s]" % self.experiment_data)
 
     def __get_a_a(self, v: list) -> list:
+
         v = v
         a_a = []
         while True:
